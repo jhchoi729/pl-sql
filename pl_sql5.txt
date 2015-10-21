@@ -1,0 +1,11 @@
+declare 
+hap BINARY_Integer:=0;
+num BINARY_Integer:=0;
+begin
+loop
+num:=num+1;
+hap:=hap+num;
+Exit when(num>9);
+end loop;
+SYS.DBMS_OUTput.put_line(hap||'    '||num);
+end;

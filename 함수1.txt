@@ -1,0 +1,18 @@
+CREATE OR REPLACE FUNCTION FUN01 
+(
+  PEMPNO IN emp.empno%type
+) 
+RETURN VARCHAR2
+IS 
+PENAME emp2.ename%type;
+BEGIN
+  select ename into PENAME from emp2 where empno=PEMPNO;
+  RETURN pename;
+END FUN01;
+
+
+
+
+
+
+select fun01(7369) from emp2 where empno=7369;

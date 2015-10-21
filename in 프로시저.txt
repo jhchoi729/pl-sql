@@ -1,0 +1,12 @@
+CREATE OR REPLACE PROCEDURE PROC02(
+vdeptno in emp.empno%type
+)
+IS --as
+--지역변수 선언
+BEGIN
+for j in(select * from emp2 where deptno=vdeptno) loop
+  DBMS_OUTPUT.PUT_LINE(j.empno||'        '||j.ename);
+end loop;
+END PROC02;
+
+exec proc02(20);

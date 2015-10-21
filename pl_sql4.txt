@@ -1,0 +1,12 @@
+declare
+grade varchar2(10);
+begin
+for r in (select ename,sal from emp) loop
+if(r.sal between 0 and 1000) then grade:='A';end if;
+if(r.sal between 1001 and 2000) then grade:='B';end if;
+if(r.sal between 2001 and 3000) then grade:='C';end if;
+if(r.sal between 3001 and 4000) then grade:='D';end if;
+if(r.sal between 4001 and 5000) then grade:='E';end if;
+SYS.DBMS_OUTput.put_line(r.ename||'    '||grade);
+end loop;
+end;

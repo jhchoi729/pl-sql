@@ -1,0 +1,27 @@
+declare
+sal number:=0;
+type dept_no_table_type is table of emp.deptno%type index by BINARY_integer;
+dept_no dept_no_table_type ;
+
+b BINARY_Integer:=0;
+
+begin
+
+for r In (select DISTINCT deptno from emp order by deptno) loop
+
+dept_no(b):=r.deptno;
+SYS.DBMS_OUTput.put_line(dept_no(b));
+b:=b+1;
+
+end loop;
+
+for i in 0..b loop
+sal:=0;
+ for r in (select sal from emp where deptno=dept_no(i)) loop
+ sal:=sal+r.sal;
+ end loop;
+SYS.DBMS_OUTput.put_line(dept_no(i)||'    '||sal);
+end loop;
+
+
+end;

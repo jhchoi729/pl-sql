@@ -1,0 +1,11 @@
+declare
+fac number:=1;
+i BINARY_Integer:=5;
+begin
+
+while (i>1) loop
+fac:=fac*i;
+i:=i-1;
+end loop;
+SYS.DBMS_OUTput.put_line(fac);
+end;
