@@ -1,0 +1,11 @@
+DECLARE
+v_empno emp2.empno%type:=7566;
+v_emp emp2%rowtype;
+v_dept emp2%rowtype;
+v_sal emp2.sal%type;
+BEGIN
+select * into v_emp from emp2 where empno=v_empno;
+select max(sal) into v_sal from emp2 where deptno=v_emp.deptno;
+select * into v_dept from emp2 where sal=v_sal;
+  SYS.DBMS_OUTput.put_line('높은 급여받는 사원번호 : '||v_dept.empno||' 이름 : '||v_dept.ename||' 부서번호 : '||v_dept.deptno||' 급여 : '||v_dept.sal);
+END;

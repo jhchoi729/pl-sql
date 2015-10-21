@@ -1,0 +1,24 @@
+declare
+type dept_no_table_type is table of emp.deptno%type index by BINARY_integer;
+dept_no dept_no_table_type ;
+
+v_dept emp.sal%type;
+
+type dept_max_type is RECORD(ename emp.ename%type,deptno emp.deptno%type,sal emp.sal%type);
+dept_max dept_max_type;
+b BINARY_Integer:=0;
+begin
+
+for dno In (select DISTINCT deptno from emp order by deptno) loop
+b:=b+1;
+dept_no(b):=dno.deptno;
+
+select max(sal) into v_dept from emp where deptno=dept_no(b);
+--SYS.DBMS_OUTput.put_line(v_dept);
+select ename,deptno,sal into dept_max from emp where sal=v_dept;
+
+SYS.DBMS_OUTput.put_line(dept_max.ename||'    '||dept_max.deptno||'    '||dept_max.sal);
+
+
+end loop;
+end;

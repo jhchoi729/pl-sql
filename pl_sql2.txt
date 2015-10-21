@@ -1,0 +1,32 @@
+declare
+type dept_no_table_type is table of emp.deptno%type index by BINARY_integer;
+dept_no dept_no_table_type ;
+
+type ename_table_type is table of emp.ename%type index by BINARY_integer;
+emane_table ename_table_type ;
+
+type sal_table_type is table of emp.sal%type index by BINARY_integer;
+sal_table sal_table_type;
+
+
+b BINARY_Integer:=0;
+c BINARY_Integer:=0;
+begin
+
+for dno In (select DISTINCT deptno from emp order by deptno) loop
+b:=b+1;
+dept_no(b):=dno.deptno;
+SYS.DBMS_OUTput.put_line(dept_no(b));
+
+for j In (select ename,sal from emp where deptno=dept_no(b)) loop
+
+
+emane_table(c):=j.ename;
+sal_table(c):=j.sal;
+SYS.DBMS_OUTput.put_line(j.ename|| j.sal);
+c:=c+1;
+end loop;
+
+end loop;
+
+end;
