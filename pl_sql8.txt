@@ -1,0 +1,37 @@
+CREATE OR REPLACE PROCEDURE PROC05 
+(
+  v_ENAME IN VARCHAR2
+
+)
+as r_deptno emp.deptno%type;
+
+BEGIN
+
+select deptno into r_deptno from emp2 where ename=v_ename;
+ for r in (select *  from emp2 where deptno=r_deptno ) loop
+
+DBMS_OUTPUT.PUT_LINE(r.ename);
+DBMS_OUTPUT.PUT_LINE(r.empno);
+
+ end loop;
+END PROC05;
+
+
+
+
+//
+exec proc05('KING');
+
+
+
+
+
+
+
+//
+CLARK
+7782
+KING
+7839
+MILLER
+7934

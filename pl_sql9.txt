@@ -1,0 +1,20 @@
+CREATE OR REPLACE TRIGGER TRIGGER1 
+AFTER UPDATE of deptno ON emp2
+FOR EACH ROW
+BEGIN
+  insert into dept_history (empno,hdate,old_dept,new_dept) VALUES (:NEW.empno,SYSDATE,:OLD.deptno,:NEW.deptno);
+END;
+
+
+
+
+//
+update emp2 set deptno=30 where empno=7369;
+select * from dept_history;
+
+//
+스미스(7369) 20번 부서 사람을 30으로 바꿈
+
+dept_history 테이블에 업데이트됨
+
+7369	15/10/22	20	30

@@ -1,0 +1,29 @@
+CREATE OR REPLACE PROCEDURE PROC06 (
+ i_num IN number,
+ r_contents out ARTICLE.A_CONTENTS%type
+)
+iS
+BEGIN
+select A_CONTENTS into r_contents from article where A_NUM=i_num;
+update article set a_hitcnt=a_hitcnt+1 where a_num=i_num;
+
+END PROC06;
+
+//
+
+VARIABLE r_contents varchar2(100);
+exec proc06(2,:r_contents);
+print r_contents;
+
+
+R_CONTENTS
+----------
+臂2
+
+//
+
+
+select * from article;
+
+1	力格1	臂1	0	15/10/22
+2	力格2	臂2	2	15/10/22

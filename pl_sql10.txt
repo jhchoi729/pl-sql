@@ -1,0 +1,35 @@
+CREATE OR REPLACE PROCEDURE PROC06 (
+ i_num IN number
+)
+iS
+
+BEGIN
+
+FOR C1 in (SELECT hitcnt from article where ANUM=i_num) LOOP
+    update article set hitcnt=c1.hitcnt+1 where anum=i_num;
+  END LOOP;
+
+END PROC06;
+
+//
+
+create table article(
+anum number,
+contents VARCHAR2(100),
+hitcnt number
+);
+
+//
+
+insert into article (anum,contents,hitcnt) VALUES (2,'±Û2',0);
+
+//
+exec proc06(2);
+
+//
+
+select * from article;
+
+anum	content	hitnum
+1	±Û	4
+2	±Û2	3
